@@ -156,16 +156,150 @@ install_brew_packages() {
   # Install GNU parallel for faster package installation
   install_brew_package "parallel"
   
+  # Programming Languages & Runtime Environments
+  BREW_LANG_PACKAGES=(
+    python
+    uv
+    go
+    rust
+    node
+    npm
+    julia
+    gcc
+    zig
+    bun
+    llvm
+    pyenv
+  )
+
+  # Databases & Data Storage
+  BREW_DB_PACKAGES=(
+    postgresql
+    sqlite
+    minio
+  )
+
+  # Development Tools & Utilities
+  BREW_DEV_TOOLS=(
+    git
+    gh
+    lazygit
+    git-delta
+    cmake
+    ripgrep
+    fzf
+    watchexec
+    ffmpeg
+    libtool
+    autoconf
+    entr
+    just
+    jq
+    procs
+    httpie
+    ngrok
+    direnv
+    starship
+    atuin
+    lsd
+    duf
+  )
+
+  # Terminal & Shell Enhancements
+  BREW_SHELL_TOOLS=(
+    tmux
+    neovim
+    navi
+    bat
+    zoxide
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    powerlevel10k
+    pv
+    htop
+    tldr
+  )
+
+  # AI & Productivity Tools
+  BREW_AI_TOOLS=(
+    chatgpt
+    copilot
+    ollama
+  )
+
+  # Network & Security Tools
+  BREW_NET_TOOLS=(
+    nmap
+    netcat
+    tcpdump
+    wireshark
+    speedtest-cli
+    rclone
+    cloudflare-warp
+    gpg
+    gnupg
+    pinentry-mac
+  )
+
+  # Cloud & DevOps Tools
+  BREW_CLOUD_DEVOPS=(
+    awscli
+    google-cloud-sdk
+    kubernetes-cli
+    terraform
+    ansible
+    docker-compose
+    lazydocker
+    1password-cli
+  )
+
+  # Database Clients
+  BREW_DB_CLIENTS=(
+    pgcli
+    mycli
+  )
+
+  # Messaging & IoT
+  BREW_MESSAGING=(
+    mosquitto
+  )
+
+  # Scientific & Data Analysis
+  BREW_SCIENTIFIC=(
+    jupyterlab
+  )
+
+  # Image & Media Processing
+  BREW_MEDIA=(
+    vips
+    exiftool
+    fdupes
+    asciinema
+  )
+
+  # Miscellaneous Utilities
+  BREW_MISC=(
+    hyperfine
+    rsync
+    fnm
+    abseil
+    graphqurl
+  )
+
+  # Combine all package groups
   BREW_PACKAGES=(
-    python uv go rust node npm minio mosquitto postgresql sqlite 
-    ripgrep neovim navi bat zoxide fzf tmux watchexec chatgpt vips
-    pyenv julia gcc zig git gh ffmpeg cmake nmap netcat tcpdump libtool autoconf
-    wireshark duf entr exiftool fdupes hyperfine just jq procs rsync speedtest-cli 
-    rclone httpie lazygit ngrok asciinema lazydocker zsh-syntax-highlighting 
-    zsh-autosuggestions copilot 1password-cli pgcli mycli awscli 
-    google-cloud-sdk cloudflare-warp fnm abseil powerlevel10k pv
-    starship atuin git-delta lsd direnv gpg gnupg pinentry-mac
-    bun htop tldr kubernetes-cli terraform ansible docker-compose
+    "${BREW_LANG_PACKAGES[@]}"
+    "${BREW_DB_PACKAGES[@]}"
+    "${BREW_DEV_TOOLS[@]}"
+    "${BREW_SHELL_TOOLS[@]}"
+    "${BREW_AI_TOOLS[@]}"
+    "${BREW_NET_TOOLS[@]}"
+    "${BREW_CLOUD_DEVOPS[@]}"
+    "${BREW_DB_CLIENTS[@]}"
+    "${BREW_MESSAGING[@]}"
+    "${BREW_SCIENTIFIC[@]}"
+    "${BREW_MEDIA[@]}"
+    "${BREW_MISC[@]}"
   )
 
   echo "Installing Homebrew packages..."
@@ -233,15 +367,112 @@ install_docker() {
 
 # Install npm packages
 install_npm_packages() {
+  # Web Frameworks & Libraries
+  NPM_WEB_FRAMEWORKS=(
+    typescript
+    react
+    svelte
+    next
+    express
+    tauri
+    tailwindcss
+    postcss
+    sass
+    styled-components
+  )
+
+  # Development Utilities
+  NPM_DEV_UTILS=(
+    nodemon
+    concurrently
+    dotenv
+    rimraf
+    cross-env
+    http-server
+    prettier
+    eslint
+    husky
+    lint-staged
+    webpack
+    vite
+    parcel
+    pm2
+  )
+
+  # API & Data Libraries
+  NPM_API_DATA=(
+    axios
+    node-fetch
+    graphql
+    apollo-server
+    cors
+    mongoose
+    sequelize
+    pg
+    sqlite3
+    redis
+  )
+
+  # Authentication & Security
+  NPM_AUTH_SECURITY=(
+    bcrypt
+    jsonwebtoken
+    passport
+    helmet
+  )
+
+  # Communication & Networking
+  NPM_COMMUNICATION=(
+    socket.io
+    ws
+    mqtt
+  )
+
+  # Testing Tools
+  NPM_TESTING=(
+    jest
+    mocha
+    chai
+    supertest
+    cypress
+  )
+
+  # CLI & Terminal Tools
+  NPM_CLI_TOOLS=(
+    commander
+    yargs
+    chalk
+    figlet
+    ora
+  )
+
+  # Utilities & Helper Libraries
+  NPM_UTILS=(
+    uuid
+    moment
+    date-fns
+    lodash
+    underscore
+    rxjs
+  )
+
+  # AI & Machine Learning
+  NPM_AI_ML=(
+    "@tensorflow/tfjs-node"
+    "natural"
+  )
+
+  # Combine all npm package groups
   NPM_PACKAGES=(
-    typescript react svelte next express tauri
-    nodemon concurrently dotenv rimraf cross-env http-server prettier 
-    eslint husky lint-staged tailwindcss postcss sass styled-components 
-    axios node-fetch graphql apollo-server cors mongoose sequelize pg 
-    sqlite3 redis bcrypt jsonwebtoken passport helmet socket.io ws mqtt 
-    jest mocha chai supertest cypress commander yargs chalk figlet ora 
-    webpack vite parcel pm2 @tensorflow/tfjs-node natural uuid moment 
-    date-fns lodash underscore rxjs
+    "${NPM_WEB_FRAMEWORKS[@]}"
+    "${NPM_DEV_UTILS[@]}"
+    "${NPM_API_DATA[@]}"
+    "${NPM_AUTH_SECURITY[@]}"
+    "${NPM_COMMUNICATION[@]}"
+    "${NPM_TESTING[@]}"
+    "${NPM_CLI_TOOLS[@]}"
+    "${NPM_UTILS[@]}"
+    "${NPM_AI_ML[@]}"
   )
 
   echo "Installing npm packages..."
@@ -278,14 +509,98 @@ setup_python() {
   # Upgrade pip in the virtual environment
   pip install --upgrade pip
 
-  # Install Python packages in parallel
+  # Data Science & Analysis
+  PYTHON_DATA_SCIENCE=(
+    polars
+    pandas
+    numpy
+    matplotlib
+    scipy
+    scikit-learn
+    seaborn
+    statsmodels
+    plotly
+    xgboost
+    lightgbm
+    torch
+    pyspark
+    modin
+    pyarrow
+    dask
+  )
+
+  # Web Development
+  PYTHON_WEB_DEV=(
+    flask
+    beautifulsoup4
+    requests
+    httpx
+    websockets
+    lxml
+  )
+
+  # GUI & Visualization
+  PYTHON_GUI_VIZ=(
+    pyqt6
+    rich
+  )
+
+  # Utilities & Tools
+  PYTHON_UTILS=(
+    scrapy
+    fire
+    typer
+    click
+    loguru
+    tqdm
+    paramiko
+    joblib
+    openpyxl
+  )
+
+  # Testing & Development
+  PYTHON_DEV_TOOLS=(
+    pytest
+    flake8
+    mypy
+    black
+  )
+
+  # Security & Authentication
+  PYTHON_SECURITY=(
+    pyjwt
+    cryptography
+  )
+
+  # Performance
+  PYTHON_PERFORMANCE=(
+    cython
+    numba
+  )
+
+  # Cloud & Infrastructure
+  PYTHON_CLOUD=(
+    boto3
+  )
+
+  # Environment & Dependency Management
+  PYTHON_ENV_MGMT=(
+    virtualenv
+    certifi
+    urllib3
+  )
+
+  # Combine all Python package groups
   PYTHON_PACKAGES=(
-    polars pandas numpy matplotlib scipy scikit-learn flask 
-    pyqt6 rich scrapy seaborn statsmodels fire requests httpx beautifulsoup4 
-    lxml websockets dask plotly xgboost lightgbm torch pyspark modin 
-    pyarrow typer click loguru tqdm pytest flake8 mypy black 
-    pyjwt cryptography paramiko joblib cython numba boto3 certifi 
-    virtualenv urllib3 openpyxl
+    "${PYTHON_DATA_SCIENCE[@]}"
+    "${PYTHON_WEB_DEV[@]}"
+    "${PYTHON_GUI_VIZ[@]}"
+    "${PYTHON_UTILS[@]}"
+    "${PYTHON_DEV_TOOLS[@]}"
+    "${PYTHON_SECURITY[@]}"
+    "${PYTHON_PERFORMANCE[@]}"
+    "${PYTHON_CLOUD[@]}"
+    "${PYTHON_ENV_MGMT[@]}"
   )
 
   # Install Python packages globally
@@ -614,69 +929,3 @@ EOF
   echo "Press any key when you have added the key to GitHub..."
   read -n 1
 }
-
-# Add a summary report at the end
-summary_report() {
-  echo "============== INSTALLATION SUMMARY ==============="
-  echo "Log file: $LOGFILE"
-  echo "Cheatsheet: $CHEATSHEET"
-  if [ -f "$LOGFILE" ]; then
-    local errors=$(grep -c "ERROR:" "$LOGFILE")
-    echo "Total errors: $errors"
-    if [ "$errors" -gt 0 ]; then
-      echo "Errors encountered during installation. See $LOGFILE for details."
-    else
-      echo "All installations completed successfully!"
-    fi
-  fi
-  echo "=================================================="
-}
-
-# Main function to run everything in the right order
-main() {
-  echo "Starting developer environment setup..."
-  
-  # Create backups
-  backup_configs
-  
-  # Check prerequisites
-  check_internet
-  install_xcode_tools
-  setup_github_dir
-  
-  # Install and optimize package managers
-  install_homebrew
-  optimize_homebrew
-  
-  # Install tools and packages
-  install_brew_packages
-  install_vscode
-  install_docker
-  
-  # Install and set up shells
-  install_ohmyzsh
-  install_ohmytmux
-  
-  # Configure development environment
-  setup_neovim
-  configure_git
-  configure_zsh
-  setup_ssh_key
-  
-  # Install language-specific packages
-  setup_python
-  install_npm_packages
-  install_rust_crates
-  install_go_packages
-  
-  # Create documentation
-  create_cheatsheet
-  
-  # Show summary
-  summary_report
-  
-  echo "Setup completed! You may need to restart your terminal for all changes to take effect."
-}
-
-# Run the main function
-main
