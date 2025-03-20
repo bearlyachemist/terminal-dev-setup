@@ -160,16 +160,20 @@ install_brew_packages() {
   BREW_LANG_PACKAGES=(
     python
     uv
+    pyenv
+    julia
     go
     rust
     node
     npm
-    julia
+    bun
     gcc
     zig
-    bun
     llvm
-    pyenv
+    lua
+    elixir
+    erlang
+    ocaml
   )
 
   # Databases & Data Storage
@@ -212,12 +216,14 @@ install_brew_packages() {
     navi
     bat
     zoxide
+    zsh
     zsh-syntax-highlighting
     zsh-autosuggestions
     powerlevel10k
     pv
     htop
     tldr
+    ghostty
   )
 
   # AI & Productivity Tools
