@@ -9,7 +9,16 @@ exec > >(while read line; do echo "$(date '+[%Y-%m-%d %H:%M:%S]') $line"; done |
 SKIP_BREW=false
 SKIP_PYTHON=false
 SKIP_NODE=false
+ORIGINAL_ARGS="$@"
+echo "Original arguments: $ORIGINAL_ARGS"
 
+# Try a more direct approach to set the flag
+for arg in "$@"; do
+  if [ "$arg" = "--skip-brew" ]; then
+    echo "Found --skip-brew argument"
+    export SKIP_BREW=true
+  fi
+done
 # Parse command line arguments FIRST, before any function definitions or executions
 while [[ $# -gt 0 ]]; do
   case $1 in
