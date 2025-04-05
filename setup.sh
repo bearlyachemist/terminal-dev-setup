@@ -169,7 +169,8 @@ install_homebrew() {
 
 # Performance optimization for Homebrew
 optimize_homebrew() {
-  fix_homebrew_permissions()
+
+  fix_homebrew_permissions
   # Update Homebrew first
   brew update
   
