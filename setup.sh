@@ -2845,7 +2845,7 @@ main() {
   setup_github_dir
   
   # Step 5-6: Install and configure Homebrew if not skipped
-  if [ "$SKIP_BREW" = false]; then
+  if [ "$SKIP_BREW" = false ]; then
     # Step 5: Install and configure Homebrew
     install_homebrew
     optimize_homebrew
