@@ -80,9 +80,38 @@ install_homebrew() {
       echo 'eval "$(/usr/local/bin/brew shellenv)"' >> $HOME/.zprofile
       eval "$(/usr/local/bin/brew shellenv)"
     fi
+    
+    # Source the profile to apply changes immediately
+    if [[ -f "$HOME/.zprofile" ]]; then
+      source "$HOME/.zprofile"
+    fi
+    
+    # Verify Homebrew installation
+    if command -v brew &>/dev/null; then
+      echo "Homebrew installation verified."
+    else
+      echo "Homebrew installation could not be verified. PATH may not be set correctly."
+      echo "Current PATH: $PATH"
+      
+      # Try a direct execution as a fallback
+      if [[ "$IS_ARM" == true ]] && [[ -f "/opt/homebrew/bin/brew" ]]; then
+        echo "Attempting to use direct path to brew..."
+        /opt/homebrew/bin/brew --version
+      elif [[ -f "/usr/local/bin/brew" ]]; then
+        echo "Attempting to use direct path to brew..."
+        /usr/local/bin/brew --version
+      else
+        echo "ERROR: Could not find brew executable. Installation may have failed."
+        return 1
+      fi
+    fi
   else
     echo "Homebrew already installed."
   fi
+  
+  # Update Homebrew
+  echo "Updating Homebrew..."
+  brew update
 }
 
 # Performance optimization for Homebrew
