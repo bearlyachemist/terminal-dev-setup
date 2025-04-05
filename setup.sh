@@ -362,6 +362,11 @@ install_brew_packages() {
     graphqurl
   )
 
+  BREW_FONTS=(
+    font-jetbrains-mono-nerd-font
+    font-fira-code-nerd-font
+  )
+
   # Combine all package groups
   BREW_PACKAGES=(
     "${BREW_LANG_PACKAGES[@]}"
@@ -376,6 +381,7 @@ install_brew_packages() {
     "${BREW_SCIENTIFIC[@]}"
     "${BREW_MEDIA[@]}"
     "${BREW_MISC[@]}"
+    "${BREW_FONTS[@]}"
   )
 
   echo "Installing Homebrew packages..."
