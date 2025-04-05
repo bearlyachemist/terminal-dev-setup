@@ -2863,7 +2863,7 @@ main() {
   install_docker || { echo "Docker installation failed, but continuing with other installations..."; }
   
   # Step 12: Install npm packages
-  if [ "$SKIP_NODE" = true ]; then
+  if [ "$SKIP_NODE" = false ]; then
     install_npm_packages || { echo "Some npm packages failed to install, but continuing..."; }
   else
     echo "Skipping Node.js and npm packages installation (--skip-node flag used)"
@@ -2912,3 +2912,5 @@ main() {
   echo "📋 Check the log at $LOGFILE"
   echo "======================================================"
 }
+
+main "@"
