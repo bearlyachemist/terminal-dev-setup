@@ -119,16 +119,24 @@ install_homebrew() {
     
     # Add homebrew to PATH based on architecture
     if [[ "$IS_ARM" == true ]]; then
+      # Add to both .zprofile and .zshrc for maximum compatibility
       echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+      echo 'export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"' >> $HOME/.zshrc
       eval "$(/opt/homebrew/bin/brew shellenv)"
     else
+      # Add to both .zprofile and .zshrc for maximum compatibility
       echo 'eval "$(/usr/local/bin/brew shellenv)"' >> $HOME/.zprofile
+      echo 'export PATH="/usr/local/bin:/usr/local/sbin:$PATH"' >> $HOME/.zshrc
       eval "$(/usr/local/bin/brew shellenv)"
     fi
     
-    # Source the profile to apply changes immediately
+    # Source both profile files to apply changes immediately
     if [[ -f "$HOME/.zprofile" ]]; then
       source "$HOME/.zprofile"
+    fi
+    
+    if [[ -f "$HOME/.zshrc" ]]; then
+      source "$HOME/.zshrc"
     fi
     
     # Verify Homebrew installation
@@ -142,9 +150,13 @@ install_homebrew() {
       if [[ "$IS_ARM" == true ]] && [[ -f "/opt/homebrew/bin/brew" ]]; then
         echo "Attempting to use direct path to brew..."
         /opt/homebrew/bin/brew --version
+        # Add direct path to PATH as a last resort
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
       elif [[ -f "/usr/local/bin/brew" ]]; then
         echo "Attempting to use direct path to brew..."
         /usr/local/bin/brew --version
+        # Add direct path to PATH as a last resort
+        export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
       else
         echo "ERROR: Could not find brew executable. Installation may have failed."
         return 1
@@ -153,10 +165,6 @@ install_homebrew() {
   else
     echo "Homebrew already installed."
   fi
-  
-  # Update Homebrew
-  echo "Updating Homebrew..."
-  brew update
 }
 
 # Performance optimization for Homebrew
