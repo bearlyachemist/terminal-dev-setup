@@ -2826,7 +2826,7 @@ main() {
   SKIP_BREW=false
   SKIP_PYTHON=false
   SKIP_NODE=false
-  
+  echo "$SKIP_BREW"
   # Parse command line arguments
   while [[ $# -gt 0 ]]; do
     case $1 in
@@ -2870,7 +2870,7 @@ main() {
   
   # Step 4: Setup GitHub directory
   setup_github_dir
-  
+  echo "$SKIP_BREW"
   # Step 5-6: Install and configure Homebrew if not skipped
   if [ "$SKIP_BREW" = false ]; then
     # Step 5: Install and configure Homebrew
