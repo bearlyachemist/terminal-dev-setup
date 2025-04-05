@@ -598,7 +598,6 @@ install_npm_packages() {
     svelte
     next
     express
-    tauri
     tailwindcss
     postcss
     sass
