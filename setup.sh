@@ -6,6 +6,42 @@ LOGFILE="$HOME/setup_log.txt"
 CHEATSHEET="$HOME/dev_environment_cheatsheet.md"
 exec > >(while read line; do echo "$(date '+[%Y-%m-%d %H:%M:%S]') $line"; done | tee -a "$LOGFILE") 2>&1
 
+SKIP_BREW=false
+SKIP_PYTHON=false
+SKIP_NODE=false
+
+# Parse command line arguments FIRST, before any function definitions or executions
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --skip-brew)
+      SKIP_BREW=true
+      shift
+      ;;
+    --skip-python)
+      SKIP_PYTHON=true
+      shift
+      ;;
+    --skip-node)
+      SKIP_NODE=true
+      shift
+      ;;
+    --help)
+      echo "Usage: setup.sh [OPTIONS]"
+      echo "Options:"
+      echo "  --skip-brew      Skip Homebrew installation and related packages"
+      echo "  --skip-python    Skip Python setup and package installation"
+      echo "  --skip-node      Skip Node.js and npm package installation"
+      echo "  --help           Display this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Use --help for available options"
+      exit 1
+      ;;
+  esac
+done
+
 # Cleanup function for failed installations
 cleanup() {
   echo "Installation interrupted. Cleaning up..."
