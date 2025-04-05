@@ -2,9 +2,6 @@
 
 set -e  # Exit immediately if a command exits with a non-zero status
 
-# Call main function at the end of the script to execute everything
-trap main EXIT
-
 LOGFILE="$HOME/setup_log.txt"
 CHEATSHEET="$HOME/dev_environment_cheatsheet.md"
 exec > >(while read line; do echo "$(date '+[%Y-%m-%d %H:%M:%S]') $line"; done | tee -a "$LOGFILE") 2>&1
@@ -2763,6 +2760,9 @@ setup_additional_tools() {
 }
 
 # Main execution flow
+# Call main function at the end of the script to execute everything
+trap main EXIT
+
 main() {
   echo "Starting development environment setup..."
   
