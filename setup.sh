@@ -169,6 +169,7 @@ install_homebrew() {
 
 # Performance optimization for Homebrew
 optimize_homebrew() {
+  fix_homebrew_permissions()
   # Update Homebrew first
   brew update
   
@@ -199,6 +200,31 @@ install_with_retry() {
     echo "Retrying ($count/$retries)..."
     sleep 2
   done
+}
+
+# Fix Homebrew permissions
+fix_homebrew_permissions() {
+
+  if command -v brew &>/dev/null; then
+    BREW_PREFIX=$(brew --prefix 2>/dev/null || echo "/opt/homebrew")
+  else
+    # Default paths based on architecture
+    if [[ "$IS_ARM" == true ]]; then
+      BREW_PREFIX="/opt/homebrew"
+    else
+      BREW_PREFIX="/usr/local"
+    fi
+  fi
+  
+  echo "Checking Homebrew permissions for $BREW_PREFIX..."
+  if [ ! -w "$BREW_PREFIX" ]; then
+    echo "Warning: $BREW_PREFIX is not writable. Fixing permissions..."
+    sudo chown -R $(whoami):admin "$BREW_PREFIX"
+    sudo chmod -R 755 "$BREW_PREFIX"
+    echo "Permissions fixed for $BREW_PREFIX"
+  else
+    echo "Homebrew permissions look good."
+  fi
 }
 
 install_brew_package() {
