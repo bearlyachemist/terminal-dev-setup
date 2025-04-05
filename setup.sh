@@ -278,17 +278,9 @@ install_brew_packages() {
     awscli
     google-cloud-sdk
     kubernetes-cli
-    terraform
-    ansible
     docker-compose
     lazydocker
     1password-cli
-  )
-
-  # Database Clients
-  BREW_DB_CLIENTS=(
-    pgcli
-    mycli
   )
 
   # Messaging & IoT
@@ -303,7 +295,6 @@ install_brew_packages() {
 
   # Image & Media Processing
   BREW_MEDIA=(
-    vips
     exiftool
     fdupes
     asciinema
