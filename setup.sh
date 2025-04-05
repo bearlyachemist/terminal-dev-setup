@@ -2845,7 +2845,7 @@ main() {
   setup_github_dir
   
   # Step 5-6: Install and configure Homebrew if not skipped
-  if [ "$SKIP_BREW" = true]; then
+  if [ "$SKIP_BREW" = false]; then
     # Step 5: Install and configure Homebrew
     install_homebrew
     optimize_homebrew
@@ -2866,14 +2866,10 @@ main() {
   install_zsh_plugins || { echo "ZSH plugins installation failed, but continuing..."; }
   
   # Step 10: Install VS Code
-  if [ "$SKIP_BREW" = true ]; then
-    install_vscode || { echo "VS Code installation failed, but continuing with other installations..."; }
-  fi
+  install_vscode || { echo "VS Code installation failed, but continuing with other installations..."; }
   
   # Step 11: Install Docker
-  if [ "$SKIP_BREW" = true ]; then
-    install_docker || { echo "Docker installation failed, but continuing with other installations..."; }
-  fi
+  install_docker || { echo "Docker installation failed, but continuing with other installations..."; }
   
   # Step 12: Install npm packages
   if [ "$SKIP_NODE" = true ]; then
