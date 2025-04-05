@@ -104,7 +104,7 @@ setup_github_dir() {
   GITHUB_DIR="$HOME/github"
   if [ ! -d "$GITHUB_DIR" ]; then
     echo "Creating GitHub directory at $GITHUB_DIR..."
-    mkdir -p "$GITHUB_DIR"
+    mkdir -p "$GITHUB_DIR" 2>/dev/null || true
     echo "GitHub directory created successfully."
   else
     echo "GitHub directory already exists at $GITHUB_DIR, skipping..."
